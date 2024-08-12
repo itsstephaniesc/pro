@@ -1,0 +1,13 @@
+const { Builder, By, until } = require('selenium-webdriver');
+let driver = new Builder().forBrowser('firefox').build();
+
+(async function example() {
+  try {
+    await driver.get('https://serenidadyresilienciaemocional.wordpress.com/');
+    await driver.findElement(By.name('q')).sendKeys('Selenium');
+    await driver.findElement(By.name('q')).submit();
+    await driver.wait(until.titleIs('Selenium - Buscar con Google'), 1000);
+  } finally {
+    await driver.quit();
+  }
+})();
